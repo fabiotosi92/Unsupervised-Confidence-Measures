@@ -5,6 +5,10 @@ This strategy provides labels for training confidence measures based on machine-
 Fabio Tosi, Matteo Poggi(https://vision.disi.unibo.it/~mpoggi/), Alessio Tonioni, Luigi Di Stefano and [Stefano Mattoccia](https://vision.disi.unibo.it/~smatt/Site/Home.html)   
 BMVC 2017
 
+![Alt text](https://github.com/fabiotosi92/Unsupervised-Confidence-Measures/blob/master/images/000059_10/disparity.png?raw=true "disparity")
+![Alt text](https://github.com/fabiotosi92/Unsupervised-Confidence-Measures/blob/master/images/000059_10/rgb_samples.png?raw=true "rgb_samples")
+![Alt text](https://github.com/fabiotosi92/Unsupervised-Confidence-Measures/blob/master/images/000059_10/disparity_positive.png?raw=true "correct_disparities")
+
 ## Requirements
 This C++ code is developed under Ubunutu 16.04. The following libraries are required:
 - gcc
