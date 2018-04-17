@@ -1354,8 +1354,8 @@ void fn_confidence_measure
 
 	//computation
 	cout << string( 2, '\n' ) 
-     << "***** Confidence Measure  *****" 
-     << string( 2, '\n' );
+	<< "***** Confidence Measure  *****" 
+	<< string( 2, '\n' );
 
 	// 01. Matching Score Measure (MSM).
 	if (use(choices, "msm") == true)

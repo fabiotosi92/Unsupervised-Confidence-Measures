@@ -38,8 +38,8 @@ void split
 )
 {
 	Mat _confidence = confidence.getMat();
-    positive_samples.create(_confidence.rows, _confidence.cols, CV_32F);
-    negative_samples.create(_confidence.rows, _confidence.cols, CV_32F);
+	positive_samples.create(_confidence.rows, _confidence.cols, CV_32F);
+	negative_samples.create(_confidence.rows, _confidence.cols, CV_32F);
 
 	Mat _positive = positive_samples.getMat();
 	Mat _negative = negative_samples.getMat();
@@ -105,7 +105,7 @@ void generate_training_samples
 	Mat _disparity_map = disparity_map.getMat();
 
 	correct.create(_disparity_map.rows, _disparity_map.cols, CV_32F);
-    wrong.create(_disparity_map.rows, _disparity_map.cols, CV_32F);
+	wrong.create(_disparity_map.rows, _disparity_map.cols, CV_32F);
 	Mat _correct = correct.getMat(), _wrong = wrong.getMat();
 
 	vector<Mat> _positive_training_samples, _negative_training_samples;

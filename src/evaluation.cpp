@@ -35,7 +35,7 @@ void samples_on_image
 	    _positive = positive.getMat(),
 	    _negative = negative.getMat();
 
-    output.create(Size(_left.cols, _left.rows), CV_8UC3);
+	output.create(Size(_left.cols, _left.rows), CV_8UC3);
 	vector<Mat> channels, channels_left; 
 	split(output, channels); 
 	Mat _output = output.getMat();
@@ -107,7 +107,7 @@ void statistics
 		}
 	}
 
-    image_points = _positive_samples.rows * _positive_samples.cols;
+	image_points = _positive_samples.rows * _positive_samples.cols;
 	n_samples = (float) n_positive_sample + (float) n_negative_sample;
 	density_samples = (float)n_samples / (float) image_points;
 	density_positive =  (float) n_positive_sample / (float) image_points;
@@ -202,7 +202,7 @@ void eval
 	
 	merge(channels, error_map);
 
-    n_error = error;
+	n_error = error;
 	tot = N_area;
 	err = (float)error / N_area * 100;
 	density = (float)(N_area) / total * 100;
@@ -230,14 +230,14 @@ void eval_and_print
 	eval(disparity, groundtruth, negative_samples, bad, invalid, error_map, density, err, true_negative, tot_negative);
 
 	float true_positive = tot_positive - false_positive;
-    float false_negative = tot_negative - true_negative;
+	float false_negative = tot_negative - true_negative;
 	float accuracy = (float)(true_positive + true_negative) / (float)(true_positive + false_positive + true_negative + false_negative);
 	float n_intersection_positive_with_gt = tot_positive;
 	float n_intersection_negative_with_gt = tot_negative;
 	float n_intersection_with_gt = n_intersection_positive_with_gt + n_intersection_negative_with_gt;
 	float n_gt_points = count_valid(groundtruth, invalid);
-    float density_samples = 0, density_positive = 0, density_negative = 0;
-    int image_points = 0, n_samples = 0, n_positive_sample = 0, n_negative_sample = 0;
+	float density_samples = 0, density_positive = 0, density_negative = 0;
+	int image_points = 0, n_samples = 0, n_positive_sample = 0, n_negative_sample = 0;
 
 	statistics(positive_samples, negative_samples, n_samples, image_points,
 			   n_positive_sample, n_negative_sample, density_samples, 
@@ -245,7 +245,7 @@ void eval_and_print
 	//print
 	string file_path = file_output_path;
 	ifstream f(file_path.c_str());
-    bool exist = f.good();
+	bool exist = f.good();
 	ofstream file; 
 	file.open(file_path.c_str(), fstream::in | fstream::out | fstream::app);
 

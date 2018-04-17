@@ -36,19 +36,19 @@ int main(int argc, const char** argv)
 
 	ArgumentParser parser;
 
-    parser.addArgument("-l", "--image_left", 1, true);
-    parser.addArgument("-r", "--image_right", 1, true);
-    parser.addArgument("-o", "--output", 1, true);
-    parser.addArgument("-f", "--file_output", 1, true);
-    parser.addArgument("-g", "--gt", 1, true);
-    parser.addArgument("-t0", "--threshold0", 1);
-    parser.addArgument("-t1", "--threshold1", 1);
-    parser.addArgument("-d", "--dmax", 1);
-    parser.addArgument("-b", "--bad", 1);
-    parser.addArgument("-s", "--scale_factor", 1);
-    parser.addArgument("-i", "--invalid", 1);
-    parser.addArgument("-p", "--confidences_positive", '+');
-    parser.addArgument("-n", "--confidences_negative", '+');
+	parser.addArgument("-l", "--image_left", 1, true);
+	parser.addArgument("-r", "--image_right", 1, true);
+	parser.addArgument("-o", "--output", 1, true);
+	parser.addArgument("-f", "--file_output", 1, true);
+	parser.addArgument("-g", "--gt", 1, true);
+	parser.addArgument("-t0", "--threshold0", 1);
+	parser.addArgument("-t1", "--threshold1", 1);
+	parser.addArgument("-d", "--dmax", 1);
+	parser.addArgument("-b", "--bad", 1);
+	parser.addArgument("-s", "--scale_factor", 1);
+	parser.addArgument("-i", "--invalid", 1);
+	parser.addArgument("-p", "--confidences_positive", '+');
+	parser.addArgument("-n", "--confidences_negative", '+');
 	parser.parse( argc, argv );
 
 	string left_path = parser.retrieve<string>("image_left");
@@ -58,10 +58,10 @@ int main(int argc, const char** argv)
 	string gt_path = parser.retrieve<string>("gt");
 	string t0 = parser.retrieve<string>("threshold0");
 	string t1 = parser.retrieve<string>("threshold1");
-    string d = parser.retrieve<string>("dmax");
-    string b = parser.retrieve<string>("bad");
-    string s = parser.retrieve<string>("scale_factor");
-    string i = parser.retrieve<string>("invalid");
+	string d = parser.retrieve<string>("dmax");
+	string b = parser.retrieve<string>("bad");
+	string s = parser.retrieve<string>("scale_factor");
+	string i = parser.retrieve<string>("invalid");
 	vector<string> choices_positive = parser.retrieve< vector<string> >("confidences_positive");
 	vector<string> choices_negative = parser.retrieve< vector<string> >("confidences_negative");
 	vector<string> choices;
@@ -69,7 +69,7 @@ int main(int argc, const char** argv)
 	copy(choices_positive.begin(), choices_positive.end(), back_inserter(choices));
 	copy(choices_negative.begin(), choices_negative.end(), back_inserter(choices));
 	sort(choices.begin(), choices.end());
-    choices.erase(unique(choices.begin(), choices.end()), choices.end());
+	choices.erase(unique(choices.begin(), choices.end()), choices.end());
 
 
 	/***************************************************************************************************/
@@ -109,13 +109,13 @@ int main(int argc, const char** argv)
 	vector<string> confidence_names; 
 
 	//stereo
-    cout << " - generate dsi_LR..." << endl;
+	cout << " - generate dsi_LR..." << endl;
 	_DSI dsi_LR = SHD_box_filtering(gray_0, gray_1, d_min, d_max, census, boxfilter);
 
-    cout << " - generate dsi_LL..." << endl;
+	cout << " - generate dsi_LL..." << endl;
 	_DSI dsi_LL = SHD_box_filtering(gray_0, gray_0, (d_min - d_max) / 2, (d_max - d_min) / 2, census, boxfilter);
 
-    cout << " - generate dsi_RR..." << endl;
+	cout << " - generate dsi_RR..." << endl;
 	_DSI dsi_RR = SHD_box_filtering(gray_1, gray_1, (d_min - d_max) / 2, (d_max - d_min) / 2, census, boxfilter);
 
 
@@ -136,7 +136,7 @@ int main(int argc, const char** argv)
 	float threshold1 = (t1.empty()) ? 0.4 : strtof((t1).c_str(),0);
 
 	Mat positive_samples, negative_samples;
-    generate_training_samples(confidences, disparity_L2R, threshold0, threshold1, confidence_names, choices_positive, choices_negative,
+	generate_training_samples(confidences, disparity_L2R, threshold0, threshold1, confidence_names, choices_positive, choices_negative,
     	positive_samples, negative_samples);
 
 	/***************************************************************************************************/
@@ -178,7 +178,7 @@ int main(int argc, const char** argv)
 			           gt_path, bad, invalid, scale, output_path, file_output_path);
 	}
 
-    cout << string( 2, '\n' ) 
+	cout << string( 2, '\n' ) 
          << "***** Done! *****" 
          << string( 2, '\n' );
 

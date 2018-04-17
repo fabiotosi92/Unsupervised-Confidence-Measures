@@ -91,11 +91,11 @@ void local_curve
 void peak_ratio
 (
 	InputArray c1, 
-    InputArray c2m, 
-    float epsilon, 
-    int height, 
-    int width, 
-    OutputArray confidence_map
+	InputArray c2m, 
+	float epsilon, 
+	int height, 
+	int width, 
+	OutputArray confidence_map
 );
 
 void average_peak_ratio
