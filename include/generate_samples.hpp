@@ -10,7 +10,7 @@ void generate_training_samples
 (
 	cv::InputArrayOfArrays confidence_measures, 
 	cv::InputArray disparity_map, 
-	float threshold0, float threshold1,
+	float threshold,
 	std::vector<std::string> confidence_names, 
 	std::vector<std::string> choices_positive, 
 	std::vector<std::string> choices_negative, 

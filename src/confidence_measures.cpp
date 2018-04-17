@@ -640,7 +640,6 @@ void left_right_consistency_check
 (
 	InputArray disparity_L2R, 
 	InputArray disparity_R2L, 
-	int disp_scale, 
 	int bad, 
 	int height, 
 	int width, 
@@ -665,7 +664,7 @@ void left_right_consistency_check
 		{
 			if (left_ptr[col] >= 0)
 			{
-				int j_right = col - (left_ptr[col]) / disp_scale;
+				int j_right = col - (left_ptr[col]);
 
 				if (j_right < 0)
 					confidence_map_ptr[col] = 0;
@@ -673,7 +672,7 @@ void left_right_consistency_check
 				{
 					if (right_ptr[j_right] >= 0)
 					{
-						int jRefp = j_right + (right_ptr[j_right]) / disp_scale;
+						int jRefp = j_right + (right_ptr[j_right]);
 
 						if((float)abs(col - jRefp) > bad)
 						    confidence_map_ptr[col] = 0;
@@ -691,8 +690,7 @@ void left_right_difference
 	InputArray c1_L, 
 	InputArray c2_L, 
 	InputArray c1_R, 
-	InputArray disparity_L, 
-	int disp_scale, 
+	InputArray disparity_L,  
 	float epsilon, 
 	int height, 
 	int width, 
@@ -719,7 +717,7 @@ void left_right_difference
 		{
 			float c1_l = c1_L_ptr[col]; 
 			float c2_l = c2_L_ptr[col];
-			int d1_l = (int)disparity_L_ptr[col]/disp_scale;
+			int d1_l = (int)disparity_L_ptr[col];
 			
 			if (col - d1_l >= 0 && d1_l>= 0)
 			{
@@ -1327,7 +1325,6 @@ void fn_confidence_measure
 	int d_min = dsi_LR.d_min;
 	int d_max = dsi_LR.d_max;
 	int num_disp = dsi_LR.num_disp;
-	int disp_scale = 256 / num_disp;
 	vector<Mat> costs = dsi_LR.values;
 	vector<Mat> costs_LL = dsi_LL.values;
 	vector<Mat> costs_RR = dsi_RR.values;
@@ -1561,7 +1558,7 @@ void fn_confidence_measure
 	{
 		Mat lrc;
 		cout  << " - confidence measure: left right consistency check (LRC)" << endl;
-		left_right_consistency_check(disparity_L2R, disparity_R2L, disp_scale, bad, height, width, lrc);
+		left_right_consistency_check(disparity_L2R, disparity_R2L, bad, height, width, lrc);
 		_confidences.push_back(lrc);
 		methods.push_back("lrc");
 	}
@@ -1594,7 +1591,7 @@ void fn_confidence_measure
 	{
 		Mat lrd;
 		cout  << " - confidence measure: left right difference (LRD)" << endl;
-		left_right_difference(c1, c2, c1_R, disparity_L2R, disp_scale, params.lrd_epsilon, height, width, lrd);
+		left_right_difference(c1, c2, c1_R, disparity_L2R, params.lrd_epsilon, height, width, lrd);
 		_confidences.push_back(lrd);
 		methods.push_back("lrd");
 	}

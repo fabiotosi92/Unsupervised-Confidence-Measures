@@ -53,7 +53,7 @@ Mat disparity_map_L2R(_DSI DSI)
 	Mat disparity = Mat(DSI.height, DSI.width, CV_32F);
 
 	float min_max;
-	int WTA, disp_scale = DSI.num_disp < 256 ? (int)pow(2, 8) / DSI.num_disp : 1;
+	int WTA;
 
 	for (int row = 0; row < DSI.height; row++)
 	{
@@ -78,7 +78,7 @@ Mat disparity_map_L2R(_DSI DSI)
 				}
 			}
 
-			if (WTA > 0) disparity.ptr<float>(row)[col] = (float)WTA * disp_scale; 
+			if (WTA > 0) disparity.ptr<float>(row)[col] = (float)WTA; 
 			else  disparity.ptr<float>(row)[col] = 0;
 		}
 	}
@@ -91,7 +91,7 @@ Mat disparity_map_R2L(_DSI DSI)
 	Mat disparity = Mat(DSI.height, DSI.width, CV_32F);
 
 	float min_max;
-	int WTA, disp_scale = (int)pow(2, 8) / DSI.num_disp;
+	int WTA;
 
 	for (int row = 0; row < DSI.height; row++)
 	{
@@ -116,7 +116,7 @@ Mat disparity_map_R2L(_DSI DSI)
 				}
 			}
 
-			if (WTA > 0) disparity.at<float>(row, col) = WTA * disp_scale;
+			if (WTA > 0) disparity.at<float>(row, col) = WTA;
 			else  disparity.at<float>(row, col) = 0;
 		}
 	}

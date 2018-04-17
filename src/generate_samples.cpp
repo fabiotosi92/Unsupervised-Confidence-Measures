@@ -32,7 +32,7 @@ bool is_binary
 void split
 (
 	InputArray confidence, 
-	float threshold0, float threshold1,
+	float threshold,
 	OutputArray positive_samples, 
 	OutputArray negative_samples
 )
@@ -69,7 +69,7 @@ void split
 	MergeSort(confidence_values,rows, cols, p, r, size); 
 	reverse(confidence_values, rows, cols,  size);
 
-	for (int i =0; i <= (int)size * threshold1; i++)
+	for (int i =0; i <= (int)size * threshold; i++)
 	{
 		int row = (int)rows[i];
 		int col = (int)cols[i];
@@ -77,7 +77,7 @@ void split
 		_positive.ptr<float>(row)[col] = 255;
 	}
 
-	for (int i = size; i >= (int)(size * (1 - threshold0)); i--)
+	for (int i = size; i >= (int)(size * (1 - threshold)); i--)
 	{
 		int row = (int)rows[i];
 		int col = (int)cols[i];
@@ -93,7 +93,7 @@ void generate_training_samples
 (
 	InputArrayOfArrays confidence_measures, 
 	InputArray disparity_map, 
-	float threshold0, float threshold1,
+	float threshold,
 	vector<string> confidence_names, 
 	vector<string> choices_positive, 
 	vector<string> choices_negative, 
@@ -117,7 +117,7 @@ void generate_training_samples
 
 		if(!is_binary(_confidence))
 		{
-			split(_confidence, threshold0, threshold1, _positive_samples, _negative_samples);
+			split(_confidence, threshold, _positive_samples, _negative_samples);
 		}
 		else
 		{

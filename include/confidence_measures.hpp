@@ -217,7 +217,6 @@ void left_right_consistency_check
 (
 	InputArray disparity_L2R, 
 	InputArray disparity_R2L, 
-	int disp_scale, 
 	int bad, 
 	int height, 
 	int width, 
@@ -229,8 +228,7 @@ void left_right_difference
 	InputArray c1_L, 
 	InputArray c2_L, 
 	InputArray c1_R, 
-	InputArray disparity_L, 
-	int disp_scale, 
+	InputArray disparity_L,  
 	float epsilon, 
 	int height, 
 	int width, 

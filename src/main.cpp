@@ -41,8 +41,7 @@ int main(int argc, const char** argv)
 	parser.addArgument("-o", "--output", 1, true);
 	parser.addArgument("-f", "--file_output", 1, true);
 	parser.addArgument("-g", "--gt", 1, true);
-	parser.addArgument("-t0", "--threshold0", 1);
-	parser.addArgument("-t1", "--threshold1", 1);
+	parser.addArgument("-t", "--threshold", 1);
 	parser.addArgument("-d", "--dmax", 1);
 	parser.addArgument("-b", "--bad", 1);
 	parser.addArgument("-s", "--scale_factor", 1);
@@ -56,8 +55,7 @@ int main(int argc, const char** argv)
 	string output_path = parser.retrieve<string>("output");
 	string file_output_path = parser.retrieve<string>("file_output");
 	string gt_path = parser.retrieve<string>("gt");
-	string t0 = parser.retrieve<string>("threshold0");
-	string t1 = parser.retrieve<string>("threshold1");
+	string t = parser.retrieve<string>("threshold");
 	string d = parser.retrieve<string>("dmax");
 	string b = parser.retrieve<string>("bad");
 	string s = parser.retrieve<string>("scale_factor");
@@ -132,11 +130,10 @@ int main(int argc, const char** argv)
 	     << string( 2, '\n' );
 
 	//cast to numbers
-	float threshold0 = (t0.empty()) ? 0.4 : strtof((t0).c_str(),0);
-	float threshold1 = (t1.empty()) ? 0.4 : strtof((t1).c_str(),0);
+	float threshold = (t.empty()) ? 0.4 : strtof((t).c_str(),0);
 
 	Mat positive_samples, negative_samples;
-	generate_training_samples(confidences, disparity_L2R, threshold0, threshold1, confidence_names, choices_positive, choices_negative,
+	generate_training_samples(confidences, disparity_L2R, threshold, confidence_names, choices_positive, choices_negative,
     	positive_samples, negative_samples);
 
 	/***************************************************************************************************/
