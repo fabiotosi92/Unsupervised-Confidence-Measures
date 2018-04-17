@@ -1,11 +1,12 @@
 # Unsupervised-Confidence-Measures
-This strategy provides labels for training confidence measures based on machine-learning technique without ground-truth labels. Compared to state-of-the-art, this method is neither constrained to image sequences nor to image content. 
-
-**Warning:** This C++ implementation contains AD-CENSUS stereo matching algorithm only.
 
 **[Learning confidence measures in the wild](http://vision.deis.unibo.it/~smatt/Papers/BMVC2017/BMVC_2017.pdf)**  
 Fabio Tosi, [Matteo Poggi](https://vision.disi.unibo.it/~mpoggi/), Alessio Tonioni, Luigi Di Stefano and [Stefano Mattoccia](https://vision.disi.unibo.it/~smatt/Site/Home.html)   
-BMVC 2017
+BMVC (British Machine Vision Conference) 2017
+
+This strategy provides labels for training confidence measures based on machine-learning technique without ground-truth labels. Compared to state-of-the-art, this method is neither constrained to image sequences nor to image content. 
+
+**Warning:** This C++ implementation contains AD-CENSUS stereo matching algorithm only.
 
 **KITTI 2012 sample**
 
