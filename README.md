@@ -1,13 +1,18 @@
 # Unsupervised-Confidence-Measures
-This strategy provides labels for training confidence measures based on machine-learning technique without ground-truth labels. Compared to state-of-the-art, this method is neither constrained to image sequences nor to image content.
 
 **[Learning confidence measures in the wild](http://vision.deis.unibo.it/~smatt/Papers/BMVC2017/BMVC_2017.pdf)**  
-Fabio Tosi, Matteo Poggi(https://vision.disi.unibo.it/~mpoggi/), Alessio Tonioni, Luigi Di Stefano and [Stefano Mattoccia](https://vision.disi.unibo.it/~smatt/Site/Home.html)   
-BMVC 2017
+Fabio Tosi, [Matteo Poggi](https://vision.disi.unibo.it/~mpoggi/), Alessio Tonioni, Luigi Di Stefano and [Stefano Mattoccia](https://vision.disi.unibo.it/~smatt/Site/Home.html)   
+BMVC (British Machine Vision Conference) 2017
+
+This strategy provides labels for training confidence measures based on machine-learning technique without ground-truth labels. Compared to state-of-the-art, this method is neither constrained to image sequences nor to image content. 
+
+**Warning:** This C++ implementation contains AD-CENSUS stereo matching algorithm only.
+
+**KITTI 2012 sample**
 
 ![Alt text](https://github.com/fabiotosi92/Unsupervised-Confidence-Measures/blob/master/images/000059_10/disparity.png?raw=true "disparity")
 ![Alt text](https://github.com/fabiotosi92/Unsupervised-Confidence-Measures/blob/master/images/000059_10/rgb_samples.png?raw=true "rgb_samples")
-![Alt text](https://github.com/fabiotosi92/Unsupervised-Confidence-Measures/blob/master/images/000059_10/disparity_positive.png?raw=true "correct_disparities")
+![Alt text](https://github.com/fabiotosi92/Unsupervised-Confidence-Measures/blob/master/images/000059_10/disparity_positive.png?raw=true "correct_disparities" )
 
 ## Requirements
 This C++ code is developed under Ubunutu 16.04. The following libraries are required:
@@ -35,8 +40,7 @@ Input (required):
 Input (optional):
 
     -d <d_max> : max disparity range (default=228)
-    -t0 <threshold_0> : percentage of pixels considerated least confident (default=0.4)
-    -t1 <threshold_1> : percentage of pixels considerated most confident (default=0.4)
+    -t <threshold> : percentage of pixels considered most/least confident (default=0.4)
     -b <bad> : value used to discriminate positive from negative samples (default=3)
     -g <groundtruth> : if groundtruth is available you can test the accuracy of positive and negative samples
     -f <evaluation_file> : CSV file in which the evaluation will be saved (if -g arg is enabled)
@@ -89,4 +93,4 @@ Example with groundtruth for test:
      - med (Difference With Median)
      - lmn (Local Minima In Neighborhood)
      
-For more details on confidence measures: [Quantitative evaluation of confidence measures in a machine learning world](http://vision.deis.unibo.it/~smatt/Papers/ICCV2017/ICCV_2017_confidence_measures.pdf) 
+For more details about confidence measures: [Quantitative evaluation of confidence measures in a machine learning world](http://vision.deis.unibo.it/~smatt/Papers/ICCV2017/ICCV_2017_confidence_measures.pdf) 
