@@ -15,7 +15,7 @@ This strategy provides labels for training confidence measures based on machine-
 ![Alt text](https://github.com/fabiotosi92/Unsupervised-Confidence-Measures/blob/master/images/000059_10/disparity_positive.png?raw=true "correct_disparities" )
 
 ## Requirements
-This C++ code is developed under Ubunutu 16.04. The following libraries are required:
+This C++ code is developed under Ubuntu 16.04. The following libraries are required:
 - gcc
 - cmake 
 - OpenCV (2.4.x)
@@ -49,12 +49,12 @@ Input (optional):
 Example without groundtruth for test:
 
 ```shell
-./build/bmvc2017 -l [left_image] -r [right_image] -o [outputpath] -p lrc uc dbl apkr med wmn -n lrc uc apkr wmn -t 0.3 -b 3 -d 228
+./build/bmvc2017 -l [left_image] -r [right_image] -o [output_path] -p lrc uc dbl apkr med wmn -n lrc uc apkr wmn -t 0.3 -b 3 -d 228
 ```
 Example with groundtruth for test:
 
 ```shell
-./build/bmvc2017 -l [left_image] -r [right_image] -g [gt_image] -f [csv_file] -o [outputpath] -p lrc uc dbl apkr med wmn -n lrc uc apkr wmn -t 0.3 -b 3 -d 228 -i 0 
+./build/bmvc2017 -l [left_image] -r [right_image] -g [gt_image] -f [csv_file] -o [output_path] -p lrc uc dbl apkr med wmn -n lrc uc apkr wmn -t 0.3 -b 3 -d 228 -i 0 
 ```
     
  ## List of usable confidence measures (CMs) 
