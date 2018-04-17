@@ -7,9 +7,11 @@
 * c1_idx is the index of the minimum in the column
 *
 /***************************************************************************************************/
-void minimum(InputArrayOfArrays costs, 
-	         OutputArray c1, 
-	         OutputArray c1_idx)
+void minimum
+(
+	InputArrayOfArrays costs, 
+	OutputArray c1, 
+	OutputArray c1_idx)
 {
 	vector<Mat> _costs;
 	costs.getMatVector(_costs);
@@ -60,8 +62,11 @@ void minimum(InputArrayOfArrays costs,
 	}
 }
 
-void minimum(InputArrayOfArrays costs, 
-	         OutputArray c1)
+void minimum
+(
+	InputArrayOfArrays costs, 
+	OutputArray c1
+)
 {
 	vector<Mat> _costs;
 	costs.getMatVector(_costs);
@@ -112,8 +117,11 @@ void minimum(InputArrayOfArrays costs,
 * Compute the sum of each column of the cost volume 
 *
 /***************************************************************************************************/
-void sum(InputArrayOfArrays costs, 
-	     OutputArray sum)
+void sum
+(
+	InputArrayOfArrays costs, 
+	OutputArray sum
+)
 {
 	vector<Mat> _costs;
 	costs.getMatVector(_costs);
@@ -155,8 +163,10 @@ void sum(InputArrayOfArrays costs,
 * The output volume contains 1 if local minima 0 otherwise (CV_8U)
 *
 /***************************************************************************************************/
-void inflections(InputArrayOfArrays costs, 
-	             OutputArrayOfArrays local_minima)
+void inflections
+(
+	InputArrayOfArrays costs, 
+	OutputArrayOfArrays local_minima)
 {
 	vector <Mat> _local_minima,
 	             _costs;
@@ -223,16 +233,19 @@ void inflections(InputArrayOfArrays costs,
 * Compute the base costs such as c1, c2, c_hat_2, inflections
 *
 /***************************************************************************************************/
-void compute_base_costs(InputArrayOfArrays costs_DSI, 
-						OutputArray c1, 
-						OutputArray c1_idx,
-						OutputArray c2, 
-						OutputArray c2_idx, 
-						OutputArray c_hat_2, 
-						OutputArray c_hat_2_idx, 
-						OutputArray c_sum, 
-						OutputArray NOI,
-						OutputArrayOfArrays local_minima)
+void compute_base_costs
+(
+	InputArrayOfArrays costs_DSI, 
+	OutputArray c1, 
+	OutputArray c1_idx,
+	OutputArray c2, 
+	OutputArray c2_idx, 
+	OutputArray c_hat_2, 
+	OutputArray c_hat_2_idx, 
+	OutputArray c_sum, 
+	OutputArray NOI,
+	OutputArrayOfArrays local_minima
+)
 {
 	vector<Mat> values, _inflections; costs_DSI.getMatVector(values);
 	vector<Mat> costs = copy(values);
@@ -352,8 +365,10 @@ vector<Mat> copy(vector<Mat> values)
 * Useful function to find the confidence to process from a vector of string
 *
 /***************************************************************************************************/
-bool use(vector<string> confidences, 
-	     string confidence)
+bool use
+(
+	vector<string> confidences, 
+	string confidence)
 {
 	return find(confidences.begin(), confidences.end(), confidence) != confidences.end();
 }

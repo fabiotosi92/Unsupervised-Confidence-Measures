@@ -67,10 +67,10 @@ _DSI SHD_box_filtering
 
 	//DSI initialization
 	_DSI DSI = DSI_init(_left.rows, _left.cols, d_min, d_max, 0);
-
 	_DSI DSI_CENSUS = hamming_distance_cost(_left, _right, d_min, d_max, r_CENSUS);
 
-	for (int d = 0; d < num_disp; d++){
+	for (int d = 0; d < num_disp; d++)
+	{
 
 		box_filter(DSI_CENSUS.values[d], r_BOX_FILTER, DSI.values[d]);
 		DSI.values[d] /= ((5 * 5 - 1)*(5 * 5));
