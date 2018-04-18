@@ -8,7 +8,7 @@ This strategy provides labels for training confidence measures based on machine-
 
 **Warning:** This C++ implementation contains AD-CENSUS stereo matching algorithm only.
 
-**KITTI 2012 sample**
+### [KITTI 2012 sample](http://www.cvlibs.net/datasets/kitti/raw_data.php)
 
 ![Alt text](https://github.com/fabiotosi92/Unsupervised-Confidence-Measures/blob/master/images/000059_10/disparity.png?raw=true "disparity")
 ![Alt text](https://github.com/fabiotosi92/Unsupervised-Confidence-Measures/blob/master/images/000059_10/rgb_samples.png?raw=true "rgb_samples")
@@ -94,3 +94,16 @@ Example with groundtruth for test:
      - lmn (Local Minima In Neighborhood)
      
 For more details about confidence measures: [Quantitative evaluation of confidence measures in a machine learning world](http://vision.deis.unibo.it/~smatt/Papers/ICCV2017/ICCV_2017_confidence_measures.pdf) 
+
+## Reference
+
+If you use this code, please cite our paper: 
+```
+@inproceedings{BMVC_2017,
+   author               = {Tosi, Fabio and Poggi, Matteo and Tonioni, Alessio and Di Stefano, Luigi and Mattoccia, Stefano},
+   booktitle            = {28th British Machine Vision Conference (BMVC 2017)},
+   month                = {September},
+   title                = {Learning confidence measures in the wild},
+   year                 = {2017},
+   }
+```
