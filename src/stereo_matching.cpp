@@ -71,7 +71,6 @@ _DSI SHD_box_filtering
 
 	for (int d = 0; d < num_disp; d++)
 	{
-
 		box_filter(DSI_CENSUS.values[d], r_BOX_FILTER, DSI.values[d]);
 		DSI.values[d] /= ((5 * 5 - 1)*(5 * 5));
 	}

@@ -761,7 +761,7 @@ void left_right_consistency_check
 						if((float)abs(col - jRefp) > bad)
 						    confidence_map_ptr[col] = 0;
 						else
-					        confidence_map_ptr[col] = 255;
+					            confidence_map_ptr[col] = 255;
 					}
 				}
 			}
@@ -1182,15 +1182,14 @@ void self_aware_matching
 	vector<Mat> _costs; costs.getMatVector(_costs);
 	vector<Mat> _costs_LL; costs_LL.getMatVector(_costs_LL);
 
-	float sum, 
-		  sum_mean_LR, sum_mean_LL, 
-		  sum_deviation_LR, sum_deviation_LL,
-          value_LR, value_LL,
-		  mean_LR, mean_LL,
-		  standard_deviation_LR, standard_deviation_LL;
+	float sum, sum_mean_LR, sum_mean_LL, 
+	      sum_deviation_LR, sum_deviation_LL,
+              value_LR, value_LL,
+	      mean_LR, mean_LL,
+              standard_deviation_LR, standard_deviation_LL;
 
 	int count_LR, count_LL, 
-		num_disp = d_max - d_min + 1;
+	    num_disp = d_max - d_min + 1;
 
 	for (int row = 0; row < height; row++)
 	{
@@ -1327,9 +1326,9 @@ void compute_DD
 	_dst.create(_image.size(), _image.depth());
 
 	if (_image.channels() > 1)
-		cvtColor(_image, _image_gray, CV_BGR2GRAY);
+	    cvtColor(_image, _image_gray, CV_BGR2GRAY);
 	else
-		_image_gray = _image.clone();
+	    _image_gray = _image.clone();
 
 	blur(_image_gray, _edges, Size(3, 3));
 	Canny(_edges, _edges, lowThreshold, lowThreshold * ratio, 2 * r + 1);
@@ -1371,9 +1370,9 @@ void difference_with_median
 		for (int col = 0; col < width; col++)
 		{
 			if((float)abs(_disparity_L2R_ptr[col] - median_ptr[col]) > bad)
-                confidence_map_ptr[col] = 0;
+                           confidence_map_ptr[col] = 0;
 			else
-				confidence_map_ptr[col] = 255;
+			   confidence_map_ptr[col] = 255;
 		}
 	}
 }
