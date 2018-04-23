@@ -45,7 +45,7 @@ Input (optional):
     -g <groundtruth> : if groundtruth is available you can test the accuracy of positive and negative samples
     -f <evaluation_file> : CSV file in which the evaluation will be saved (if -g arg is enabled)
     -i <invalid_pixel> : invalid pixel value for gt image (e.g 0 for KITTI, 255 for Middlebury) 
-    
+    -s <scale_factor> : scale factor for gt image (e.g 256 for KITTI, 1 for Middlebury)
 Example without groundtruth for test:
 
 ```shell
@@ -54,7 +54,7 @@ Example without groundtruth for test:
 Example with groundtruth for test:
 
 ```shell
-./build/bmvc2017 -l [left_image] -r [right_image] -g [gt_image] -f [csv_file] -o [output_path] -p lrc uc dbl apkr med wmn -n lrc uc apkr wmn -t 0.3 -b 3 -d 228 -i 0 
+./build/bmvc2017 -l [left_image] -r [right_image] -g [gt_image] -f [csv_file] -o [output_path] -p lrc uc dbl apkr med wmn -n lrc uc apkr wmn -t 0.3 -b 3 -d 228 -i 0 -s 256
 ```
     
  ## List of usable confidence measures (CMs) 
@@ -92,6 +92,8 @@ Example with groundtruth for test:
      - dte (Distance To Edge)
      - med (Difference With Median)
      - lmn (Local Minima In Neighborhood)
+     - da (Disparity Agreement)
+     - ds (Disparity Scattering)
      
 For more details about confidence measures: [Quantitative evaluation of confidence measures in a machine learning world](http://vision.deis.unibo.it/~smatt/Papers/ICCV2017/ICCV_2017_confidence_measures.pdf) 
 
