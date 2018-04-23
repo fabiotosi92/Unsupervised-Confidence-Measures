@@ -16,6 +16,8 @@ void set_parameters
 	params.nmm_sigma = 2;
 	params.zsad_radius = 2;
 	params.med_radius = 5;
+        params.da_radius = 5;
+        params.ds_radius = 5;
 	params.dsm_epsilon = 0.001;
 	params.DD_edge_threshold = 1;
 	params.DD_radius = 1;
@@ -393,6 +395,88 @@ void disparity_ambiguity_measure
 		}
 	}
 }
+
+
+void disparity_agreement
+(
+	InputArray disparity_map,  
+	int height, 
+	int width,
+	int radius, 
+	OutputArray confidence_map
+)
+{
+	confidence_map.create(height, width, CV_32F);
+
+	Mat _disparity_map = disparity_map.getMat(),
+	    _confidence_map = confidence_map.getMat();
+
+	for (int row = 0; row < _disparity_map.rows; row++)
+		for (int col = 0; col < _disparity_map.cols; col++)
+		{
+			int *histogram = (int*)calloc(256, sizeof(int));
+			int pixels = 0, tot = 0;
+			for (int dy = (row - radius < 0 ? 0 : row - radius); 
+                                 dy <= (row + radius < _disparity_map.rows ? row + radius : _disparity_map.rows - 1); 
+                                 dy++)
+				for (int dx = (col - radius < 0 ? 0 : col - radius); 
+                                         dx <= (col + radius < _disparity_map.cols ? col + radius : _disparity_map.cols - 1); 
+					 dx++)
+				{
+					histogram[(int)_disparity_map.at<float>(dy,dx)]++;
+					if ( abs(_disparity_map.at<float>(row,col) - _disparity_map.at<float>(dy,dx)) < 1)  pixels++;
+					tot++;
+				}
+
+			int values = 0;
+			for (int h = 0; h <256; h++)
+				if (histogram[h] != 0) values++;
+
+			_confidence_map.at<float>(row,col) = (float)pixels/(float)tot;
+			free(histogram);
+		}
+}
+
+void disparity_scattering
+(
+	InputArray disparity_map,  
+	int height, 
+	int width,
+	int radius,
+	OutputArray confidence_map
+)
+{
+	confidence_map.create(height, width, CV_32F);
+
+	Mat _disparity_map = disparity_map.getMat(),
+	    _confidence_map = confidence_map.getMat();
+
+	for (int row = 0; row < _disparity_map.rows; row++)
+		for (int col = 0; col < _disparity_map.cols; col++)
+		{
+			int *histogram = (int*)calloc(256, sizeof(int));
+			int pixels = 0, tot = 0;
+			for (int dy = (row - radius < 0 ? 0 : row - radius); 
+                                 dy <= (row + radius < _disparity_map.rows ? row + radius : _disparity_map.rows - 1); 
+                                 dy++)
+				for (int dx = (col - radius < 0 ? 0 : col - radius); 
+                                         dx <= (col + radius < _disparity_map.cols ? col + radius : _disparity_map.cols - 1); 
+					 dx++)
+				{
+					histogram[(int)_disparity_map.at<float>(dy,dx)]++;
+					if ( abs(_disparity_map.at<float>(row,col) - _disparity_map.at<float>(dy,dx)) < 1)  pixels++;
+					tot++;
+				}
+
+			int values = 0;
+			for (int h = 0; h <256; h++)
+				if (histogram[h] != 0) values++;
+
+			_confidence_map.at<float>(row,col) = - log((float)values/(float)tot);
+			free(histogram);
+		}
+}
+
 
 //2.4	The Entire Cost Curve
 void winner_margin
@@ -1708,6 +1792,26 @@ void fn_confidence_measure
 		local_minima_in_neighborhood(local_minima, c1_idx, params.lmn_radius, height, width, lmn);
 		_confidences.push_back(lmn);
 		methods.push_back("lmn");
+	}
+
+	//36. Disparity Agreement (DA)
+	if (use(choices, "da") == true)
+	{
+		Mat da;
+		cout  << " - confidence measure: disparity agreement (DA)" << endl;
+		disparity_agreement(disparity_L2R, height, width, params.da_radius, da);
+		_confidences.push_back(da);
+		methods.push_back("da");
+	}
+
+	//37. Disparity Agreement (DS)
+	if (use(choices, "ds") == true)
+	{
+		Mat ds;
+		cout  << " - confidence measure: disparity scattering (DS)" << endl;
+		disparity_scattering(disparity_L2R, height, width, params.ds_radius, ds);
+		_confidences.push_back(ds);
+		methods.push_back("ds");
 	}
 
 	//confidence maps

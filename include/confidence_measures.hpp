@@ -11,32 +11,34 @@ using namespace std;
 struct confParams
 {
 	int zsad_radius,
-		apkr_radius,
-		lmn_radius,
-		med_radius,
-		pdwc_radius,
-		DD_edge_threshold,
-		DD_ratio,
-		DD_radius,
-		DD_max_lowThreshold,
-		dvm;
+	    apkr_radius,
+	    lmn_radius,
+	    med_radius,
+	    da_radius,
+	    ds_radius,
+	    DD_edge_threshold,
+	    DD_ratio,
+	    DD_radius,
+	    DD_max_lowThreshold,
+	    dvm;
 
 	float pkr_epsilon,
-		  apkr_epsilon,
-		  dsm_epsilon,
-		  lrd_epsilon,
-		  mlm_sigma,
-		  aml_sigma,
-		  per_sigma,
-		  nmm_sigma,
-		  lc_gamma;
+	      apkr_epsilon,
+	      dsm_epsilon,
+	      lrd_epsilon,
+	      mlm_sigma,
+	      aml_sigma,
+	      per_sigma,
+	      nmm_sigma,
+	      lc_gamma;
 
 	confParams() :  
 		zsad_radius(-1),
 		apkr_radius(-1),
 		lmn_radius(-1),
 		med_radius(-1),
-		pdwc_radius(-1),
+		da_radius(-1),
+		ds_radius(-1),
 		dvm(-1),
 		pkr_epsilon(-1),
 		apkr_epsilon(-1),
@@ -149,6 +151,24 @@ void disparity_ambiguity_measure
 	InputArray c2_idx, 
 	int height, 
 	int width, 
+	OutputArray confidence_map
+);
+
+void disparity_agreement
+(
+	InputArray disparity_map,  
+	int height, 
+	int width,
+	int radius,
+	OutputArray confidence_map
+);
+
+void disparity_scattering
+(
+	InputArray disparity_map,  
+	int height, 
+	int width,
+	int radius,
 	OutputArray confidence_map
 );
 
